@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💝 A Special Question 💝</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Animated background hearts */
+        body::before {
+            content: '💕';
+            position: absolute;
+            font-size: 100px;
+            opacity: 0.1;
+            animation: float 20s infinite;
+            top: -100px;
+            left: 10%;
+        }
+
+        body::after {
+            content: '💖';
+            position: absolute;
+            font-size: 80px;
+            opacity: 0.1;
+            animation: float 15s infinite 5s;
+            bottom: -100px;
+            right: 10%;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-100vh) rotate(360deg); }
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            padding: 60px 50px;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            max-width: 600px;
+            width: 90%;
+            position: relative;
+            animation: slideIn 0.8s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5em;
+            color: #d946ef;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .button-container {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            margin-top: 40px;
+            position: relative;
+            min-height: 80px;
+        }
+
+        button {
+            padding: 18px 50px;
+            font-size: 1.3em;
+            font-weight: 600;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+
+        #yesBtn {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 10px 30px rgba(245, 87, 108, 0.4); }
+            50% { box-shadow: 0 10px 50px rgba(245, 87, 108, 0.8); }
+        }
+
+        #yesBtn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 15px 40px rgba(245, 87, 108, 0.6);
+        }
+
+        #noBtn {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            color: #666;
+            transition: transform 0.3s ease;
+        }
+
+        #noBtn:hover:not(.disabled) {
+            transform: scale(1.05);
+        }
+
+        #noBtn.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        #funnyImage {
+            display: none;
+            margin-top: 30px;
+            max-width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .poem-container {
+            animation: fadeIn 1s ease-in;
+        }
+
+        .poem-container h1 {
+            font-size: 2.8em;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 40px;
+        }
+
+        .poem-container p {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2em;
+            line-height: 1.8;
+            color: #555;
+            font-style: italic;
+            text-align: left;
+            padding: 0 20px;
+        }
+
+        /* Floating hearts animation */
+        .heart {
+            position: absolute;
+            font-size: 30px;
+            animation: floatHeart 4s ease-in infinite;
+            opacity: 0;
+        }
+
+        @keyframes floatHeart {
+            0% {
+                opacity: 0;
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-200px) rotate(180deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="content">
+            <h1 id="question">Will you be my Valentine? 💝</h1>
+            <div class="button-container">
+                <button id="yesBtn" onclick="sayYes()">Yes! 💖</button>
+                <button id="noBtn" onclick="sayNo()">No 😔</button>
+            </div>
+            <img id="funnyImage" src="https://media.giphy.com/media/L95W4wv8nnb9K/giphy.gif" alt="Please say yes!">
+        </div>
+    </div>
+
+    <script>
+        let noCount = 0;
+        const noBtn = document.getElementById("noBtn");
+
+        function sayNo() {
+            noCount++;
+            const question = document.getElementById("question");
+            const image = document.getElementById("funnyImage");
+
+            if (noCount === 1) {
+                question.innerHTML = "Think again 😞?";
+                moveButton();
+            } 
+            else if (noCount === 2) {
+                question.innerHTML = "Are you sure 😡?";
+                moveButton();
+            } 
+            else if (noCount === 3) {
+                question.innerHTML = "See This 🤭";
+                image.style.display = "block";
+                moveButton();
+            } 
+            else if (noCount === 4) {
+                question.innerHTML = "Last chance 😈";
+                noBtn.classList.add("disabled");
+                noBtn.disabled = true;
+            }
+        }
+
+        function moveButton() {
+            const x = Math.random() * 200 - 100;
+            const y = Math.random() * 200 - 100;
+            noBtn.style.transform = `translate(${x}px, ${y}px)`;
+        }
+
+        function sayYes() {
+            document.getElementById("content").innerHTML = `
+                <div class="poem-container">
+                    <h1>💞 Forever Starts Now 💞</h1>
+                    
+                    <p style="white-space: pre-line;">
+❝
+If you're looking for forever,
+I'll take the batteries out of my clocks,
+so that we'll be stuck inside this moment,
+as if time had really stopped.
+
+I would tell you I love you every second,
+except here, seconds do not exist.
+So I'll say I love you with each breath,
+with each smile, with each kiss.
+
+And when I die, you can crank your watch,
+restart your clocks, begin the time,
+and know that we were infinite
+in the moment that you were mine.
+❞
+                    </p>
+
+                    <!-- YouTube Music Embed -->
+                    <iframe width="0" height="0"
+                    src="https://www.youtube.com/embed/OE4jse3CUkI?autoplay=1&loop=1&playlist=OE4jse3CUkI"
+                    frameborder="0"
+                    allow="autoplay">
+                    </iframe>
+                </div>
+            `;
+            
+            // Create floating hearts
+            createFloatingHearts();
+        }
+
+        function createFloatingHearts() {
+            setInterval(() => {
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.innerHTML = '💖';
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.bottom = '0';
+                document.body.appendChild(heart);
+                
+                setTimeout(() => heart.remove(), 4000);
+            }, 300);
+        }
+    </script>
+</body>
+</html>
