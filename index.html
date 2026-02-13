@@ -251,6 +251,14 @@
         let noCount = 0;
         const noBtn = document.getElementById("noBtn");
 
+        // Array of funny GIFs for each "No" click
+        const funnyImages = [
+            "https://media.giphy.com/media/L95W4wv8nnb9K/giphy.gif", // Sad puppy
+            "https://media.giphy.com/media/d2lcHJTG5Tscg/giphy.gif", // Crying
+            "https://media.giphy.com/media/OPU6wzx8JrHna/giphy.gif", // Please
+            "https://media.giphy.com/media/9Y5BbDSkSTiY8/giphy.gif"  // Heartbroken
+        ];
+
         function sayNo() {
             noCount++;
             const question = document.getElementById("question");
@@ -258,19 +266,26 @@
 
             if (noCount === 1) {
                 question.innerHTML = "Think again 😞?";
+                image.src = funnyImages[0];
+                image.style.display = "block";
                 moveButton();
             }
             else if (noCount === 2) {
                 question.innerHTML = "Are you sure 😡?";
+                image.src = funnyImages[1];
+                image.style.display = "block";
                 moveButton();
             }
             else if (noCount === 3) {
-                question.innerHTML = "See This 🤭";
+                question.innerHTML = "Please reconsider �";
+                image.src = funnyImages[2];
                 image.style.display = "block";
                 moveButton();
             }
             else if (noCount === 4) {
-                question.innerHTML = "Last chance 😈";
+                question.innerHTML = "Last chance 😈💔";
+                image.src = funnyImages[3];
+                image.style.display = "block";
                 noBtn.classList.add("disabled");
                 noBtn.disabled = true;
             }
