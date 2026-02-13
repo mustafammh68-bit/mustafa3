@@ -238,7 +238,9 @@
 <body>
     <div class="container">
         <div id="content">
-            <h1 id="question">Will you be my Valentine? 💝</h1>
+            <h1 id="question">Will you be mine🌚?</h1>
+            <p id="subQuestion" style="font-size: 1.1em; color: #666; margin-bottom: 20px;">Life is an incredible
+                journey, and I want to spend every single second of it with you.</p>
             <div class="button-container">
                 <button id="yesBtn" onclick="sayYes()">Yes! 💖</button>
                 <button id="noBtn" onclick="sayNo()">No 😔</button>
@@ -263,6 +265,9 @@
             noCount++;
             const question = document.getElementById("question");
             const image = document.getElementById("funnyImage");
+            const subQuestion = document.getElementById("subQuestion");
+
+            if (subQuestion) subQuestion.style.display = "none";
 
             if (noCount === 1) {
                 question.innerHTML = "Think again 😞?";
